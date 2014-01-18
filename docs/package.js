@@ -14,6 +14,12 @@
       "mode": "100644",
       "content": "Hello.\n",
       "type": "blob"
+    },
+    "CNAME": {
+      "path": "CNAME",
+      "mode": "100644",
+      "content": "danielx.net\n",
+      "type": "blob"
     }
   },
   "distribution": {},
