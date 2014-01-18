@@ -18,7 +18,7 @@
     "CNAME": {
       "path": "CNAME",
       "mode": "100644",
-      "content": "danielx.net\n",
+      "content": "www.danielx.net\n",
       "type": "blob"
     }
   },
