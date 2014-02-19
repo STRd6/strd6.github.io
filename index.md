@@ -7,12 +7,15 @@ This whole site is created in my [editor](/editor/docs).
 
 The source for this directory is here: https://github.com/STRd6/strd6.github.io
 
-Introduction
+Explorations
 ------------
 
 The internet and computer software is a big place to explore. These are some of
 my explorations.
 
+- [Editor](/editor)
+- [Pixel Editor](/pixel-editor)
+- [Fourier Transform](/series)
 - [Streams](/stream/docs)
 
 Articles
