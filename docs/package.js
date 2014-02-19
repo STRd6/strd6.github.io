@@ -3,10 +3,10 @@
   window.require = Require.generateFor(pkg);
 })({
   "source": {
-    "README": {
-      "path": "README",
+    "CNAME": {
+      "path": "CNAME",
       "mode": "100644",
-      "content": "",
+      "content": "www.danielx.net\n",
       "type": "blob"
     },
     "index.html": {
@@ -15,14 +15,20 @@
       "content": "Hello.\n",
       "type": "blob"
     },
-    "CNAME": {
-      "path": "CNAME",
+    "pixie.cson": {
+      "path": "pixie.cson",
       "mode": "100644",
-      "content": "www.danielx.net\n",
+      "content": "publishBranch: \"master\"\n",
       "type": "blob"
     }
   },
-  "distribution": {},
+  "distribution": {
+    "pixie": {
+      "path": "pixie",
+      "content": "module.exports = {\"publishBranch\":\"master\"};",
+      "type": "blob"
+    }
+  },
   "progenitor": {
     "url": "http://strd6.github.io/editor/"
   },
@@ -91,14 +97,14 @@
     "labels_url": "https://api.github.com/repos/STRd6/strd6.github.io/labels{/name}",
     "releases_url": "https://api.github.com/repos/STRd6/strd6.github.io/releases{/id}",
     "created_at": "2012-02-05T01:56:50Z",
-    "updated_at": "2014-01-18T20:40:46Z",
-    "pushed_at": "2012-02-05T02:09:19Z",
+    "updated_at": "2014-01-18T22:06:21Z",
+    "pushed_at": "2014-01-18T22:06:20Z",
     "git_url": "git://github.com/STRd6/strd6.github.io.git",
     "ssh_url": "git@github.com:STRd6/strd6.github.io.git",
     "clone_url": "https://github.com/STRd6/strd6.github.io.git",
     "svn_url": "https://github.com/STRd6/strd6.github.io",
     "homepage": "strd6.github.io",
-    "size": 92,
+    "size": 156,
     "stargazers_count": 1,
     "watchers_count": 1,
     "language": null,
