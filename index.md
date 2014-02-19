@@ -1,8 +1,21 @@
-J. T. Blogzone
-==============
+www.danielx.net
+===============
 
-Hellow
+Here I have many software experiments.
 
-:3
+This whole site is created in my [editor](/editor/docs).
 
-Radical!
+The source for this directory is here: https://github.com/STRd6/strd6.github.io
+
+Introduction
+------------
+
+The internet and computer software is a big place to explore. These are some of
+my explorations.
+
+- [Streams](/stream/docs)
+
+Articles
+--------
+
+[Using JSONP with Github Pages](./gh-pages-jsonp)
