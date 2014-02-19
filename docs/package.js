@@ -1,4 +1,7 @@
-window["STRd6/strd6.github.io:blog"]({
+(function(pkg) {
+  // Expose a require for our package so scripts can access our modules
+  window.require = Require.generateFor(pkg);
+})({
   "source": {
     "index.md": {
       "path": "index.md",
