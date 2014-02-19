@@ -14,8 +14,9 @@ The internet and computer software is a big place to explore. These are some of
 my explorations.
 
 - [Editor](/editor)
-- [Pixel Editor](/pixel-editor)
 - [Fourier Transform](/series)
+- [Package Manager](/require/docs)
+- [Pixel Editor](/pixel-editor)
 - [Streams](/stream/docs)
 
 Articles
