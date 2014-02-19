@@ -8,27 +8,9 @@
       "mode": "100644",
       "content": "www.danielx.net\n",
       "type": "blob"
-    },
-    "index.html": {
-      "path": "index.html",
-      "mode": "100644",
-      "content": "Hello.\n",
-      "type": "blob"
-    },
-    "pixie.cson": {
-      "path": "pixie.cson",
-      "mode": "100644",
-      "content": "publishBranch: \"master\"\n",
-      "type": "blob"
     }
   },
-  "distribution": {
-    "pixie": {
-      "path": "pixie",
-      "content": "module.exports = {\"publishBranch\":\"master\"};",
-      "type": "blob"
-    }
-  },
+  "distribution": {},
   "progenitor": {
     "url": "http://strd6.github.io/editor/"
   },
@@ -97,25 +79,25 @@
     "labels_url": "https://api.github.com/repos/STRd6/strd6.github.io/labels{/name}",
     "releases_url": "https://api.github.com/repos/STRd6/strd6.github.io/releases{/id}",
     "created_at": "2012-02-05T01:56:50Z",
-    "updated_at": "2014-01-18T22:06:21Z",
-    "pushed_at": "2014-01-18T22:06:20Z",
+    "updated_at": "2014-02-19T02:08:07Z",
+    "pushed_at": "2014-02-19T01:23:49Z",
     "git_url": "git://github.com/STRd6/strd6.github.io.git",
     "ssh_url": "git@github.com:STRd6/strd6.github.io.git",
     "clone_url": "https://github.com/STRd6/strd6.github.io.git",
     "svn_url": "https://github.com/STRd6/strd6.github.io",
     "homepage": "strd6.github.io",
-    "size": 156,
+    "size": 180,
     "stargazers_count": 1,
     "watchers_count": 1,
-    "language": null,
+    "language": "CoffeeScript",
     "has_issues": true,
     "has_downloads": true,
     "has_wiki": true,
     "forks_count": 0,
     "mirror_url": null,
-    "open_issues_count": 0,
+    "open_issues_count": 1,
     "forks": 0,
-    "open_issues": 0,
+    "open_issues": 1,
     "watchers": 1,
     "default_branch": "master",
     "master_branch": "master",
@@ -127,7 +109,8 @@
     "network_count": 0,
     "subscribers_count": 1,
     "branch": "master",
-    "defaultBranch": "master"
+    "defaultBranch": "master",
+    "publishBranch": "gh-pages"
   },
   "dependencies": {}
 });
