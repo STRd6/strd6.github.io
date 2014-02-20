@@ -15,6 +15,8 @@ my explorations.
 
 - [Editor](/editor)
 - [Fourier Transform](/series)
+- [Inflecta](/inflecta/docs)
+- [Interactive Documentation](/interactive/docs)
 - [Package Manager](/require/docs)
 - [Pixel Editor](/pixel-editor)
 - [Streams](/stream/docs)
