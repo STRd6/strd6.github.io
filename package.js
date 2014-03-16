@@ -3,6 +3,12 @@
   window.require = Require.generateFor(pkg);
 })({
   "source": {
+    "gh-pages-jsonp.md": {
+      "path": "gh-pages-jsonp.md",
+      "mode": "100644",
+      "content": "Using JSONP with Github Pages\n=============================\n\nHere's neat trick, hosting JSON data on Github Pages that is available cross\ndomain via JSONP.\n\nWhat is JSONP\n-------------\n\nTraditionally JSONP was used to circumvent the\n[same origin policy](http://en.wikipedia.org/wiki/Same-origin_policy) in\nJavaScript. AJAX requests were limited in what sites they could make requests to\nbut `<script>` tags did not have such restrictions imposed.\n\nYou can fake a cross orgin request by loading a script tag with a known\ncallback function. Many web services support JSONP by allowing for a\n`callback=someFunction` parameter to be sent in the query string.\n\nHere is an example URL from Google Docs\nhttps://spreadsheets.google.com/feeds/list/o13394135408524254648.240766968415752635/od6/public/basic?alt=json-in-script&callback=someFunction\n\nNotice the `callback=someFunction` parameter. Go view that URL and you will\nnotice that it is simply a script with the function with the given name being\ncalled with the data as a parameter.\n\nUsing JSONP on Github Pages\n---------------------------\n\nIdeally you could just store a `.json` file in the `gh-pages` branch of your\nrepo but unfortunately Github doesn't allow for setting CORS options on Github\nPages. Maybe they will in the future but until then we need to simulate the\nprocess.\n\nThe tricky part is that all gh-pages files are served statically, so the\nregular method of passing a callback in the querystring will have no effect.\n\nThere is a simple way to get around this. Because all your files are static and\nyou know the path where they are located, you can construct them to enable\nstatic JSONP.\n\nThe pattern I settled on was `<account>/<repo>:<ref>` for example `STRd6/md:v0.3.2`.\n\nThat file is hosted here: http://strd6.github.io/md/v0.3.2.json.js\n\nI use `.json.js` as the file extension so that Github's server can reasonably\nguess the MIME type and apply the correct compression.\n\nYou will notice that the function which is invoked is `STRd6/md:v0.3.2`. It\ndoesn't matter that the function has special characters in it, but you need to\nmake sure to access it as `window[\"STRd6/md:v0.3.2\"](...jsonData...)` because it\ncan't be invoked like a regularly named function.\n\nTo read this file from a web page using jQuery:\n\n>     $.ajax({\n>       url: \"http://strd6.github.io/md/v0.3.2.json.js\",\n>       dataType: \"jsonp\",\n>       jsonpCallback: \"STRd6/md:v0.3.2\"\n>       success: function(data) { ... }\n>     })\n\nEt voila! Now you can retrieve JSON data from Github Pages accross domains.\n\n[Back to danielx.net](/)\n",
+      "type": "blob"
+    },
     "index.md": {
       "path": "index.md",
       "mode": "100644",
@@ -13,12 +19,6 @@
       "path": "pixie.cson",
       "mode": "100644",
       "content": "publishBranch: \"master\"\n",
-      "type": "blob"
-    },
-    "gh-pages-jsonp.md": {
-      "path": "gh-pages-jsonp.md",
-      "mode": "100644",
-      "content": "Using JSONP with Github Pages\n=============================\n\nHere's neat trick, hosting JSON data on Github Pages that is available cross\ndomain via JSONP.\n\nWhat is JSONP\n-------------\n\nTraditionally JSONP was used to circumvent the \n[same origin policy](http://en.wikipedia.org/wiki/Same-origin_policy) in \nJavaScript. AJAX requests were limited in what sites they could make requests to\nbut `<script>` tags did not have such restrictions imposed. \n\nYou can fake a cross orgin request by loading a script tag with a known \ncallback function. Many web services support JSONP by allowing for a \n`callback=someFunction` parameter to be sent in the query string.\n\nHere is an example URL from Google Docs \nhttps://spreadsheets.google.com/feeds/list/o13394135408524254648.240766968415752635/od6/public/basic?alt=json-in-script&callback=someFunction\n\nNotice the `callback=someFunction` parameter. Go view that URL and you will\nnotice that it is simply a script with the function with the given name being\ncalled with the data as a parameter.\n\nUsing JSONP on Github Pages\n---------------------------\n\nIdeally you could just store a `.json` file in the `gh-pages` branch of your\nrepo but unfortunately Github doesn't allow for setting CORS options on Github\nPages. Maybe they will in the future but until then we need to simulate the\nprocess.\n\nThe tricky part is that all gh-pages files are served statically, so the\nregular method of passing a callback in the querystring will have no effect.\n\nThere is a simple way to get around this. Because all your files are static and\nyou know the path where they are located, you can construct them to enable\nstatic JSONP.\n\nThe pattern I settled on was `<account>/<repo>:<ref>` for example `STRd6/md:v0.3.2`.\n\nThat file is hosted here: http://strd6.github.io/md/v0.3.2.json.js\n\nI use `.json.js` as the file extension so that Github's server can reasonably\nguess the MIME type and apply the correct compression.\n\nYou will notice that the function which is invoked is `STRd6/md:v0.3.2`. It\ndoesn't matter that the function has special characters in it, but you need to\nmake sure to access it as `window[\"STRd6/md:v0.3.2\"](...jsonData...)` because it\ncan't be invoked like a regularly named function.\n\nTo read this file from a web page using jQuery:\n\n>     $.ajax({\n>       url: \"http://strd6.github.io/md/v0.3.2.json.js\",\n>       dataType: \"jsonp\",\n>       jsonpCallback: \"STRd6/md:v0.3.2\"\n>       success: function(data) { ... }\n>     })\n\nEt voila! Now you can retrieve JSON data from Github Pages accross domains.\n\n[Back to danielx.net](/)\n",
       "type": "blob"
     }
   },
@@ -97,14 +97,14 @@
     "labels_url": "https://api.github.com/repos/STRd6/strd6.github.io/labels{/name}",
     "releases_url": "https://api.github.com/repos/STRd6/strd6.github.io/releases{/id}",
     "created_at": "2012-02-05T01:56:50Z",
-    "updated_at": "2014-02-19T20:36:40Z",
-    "pushed_at": "2014-02-19T20:36:40Z",
+    "updated_at": "2014-02-20T01:57:14Z",
+    "pushed_at": "2014-02-20T01:57:14Z",
     "git_url": "git://github.com/STRd6/strd6.github.io.git",
     "ssh_url": "git@github.com:STRd6/strd6.github.io.git",
     "clone_url": "https://github.com/STRd6/strd6.github.io.git",
     "svn_url": "https://github.com/STRd6/strd6.github.io",
     "homepage": "strd6.github.io",
-    "size": 180,
+    "size": 324,
     "stargazers_count": 1,
     "watchers_count": 1,
     "language": "CoffeeScript",

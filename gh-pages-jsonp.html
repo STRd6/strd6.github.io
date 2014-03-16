@@ -48,14 +48,14 @@ domain via JSONP.</p>
               <div class="pilwrap">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Traditionally JSONP was used to circumvent the 
-<a href="http://en.wikipedia.org/wiki/Same-origin_policy">same origin policy</a> in 
+              <p>Traditionally JSONP was used to circumvent the
+<a href="http://en.wikipedia.org/wiki/Same-origin_policy">same origin policy</a> in
 JavaScript. AJAX requests were limited in what sites they could make requests to
-but <code>&lt;script&gt;</code> tags did not have such restrictions imposed. </p>
-<p>You can fake a cross orgin request by loading a script tag with a known 
-callback function. Many web services support JSONP by allowing for a 
+but <code>&lt;script&gt;</code> tags did not have such restrictions imposed.</p>
+<p>You can fake a cross orgin request by loading a script tag with a known
+callback function. Many web services support JSONP by allowing for a
 <code>callback=someFunction</code> parameter to be sent in the query string.</p>
-<p>Here is an example URL from Google Docs 
+<p>Here is an example URL from Google Docs
 <a href="https://spreadsheets.google.com/feeds/list/o13394135408524254648.240766968415752635/od6/public/basic?alt=json-in-script&amp;callback=someFunction">https://spreadsheets.google.com/feeds/list/o13394135408524254648.240766968415752635/od6/public/basic?alt=json-in-script&amp;callback=someFunction</a></p>
 <p>Notice the <code>callback=someFunction</code> parameter. Go view that URL and you will
 notice that it is simply a script with the function with the given name being
