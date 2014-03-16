@@ -7,16 +7,16 @@ domain via JSONP.
 What is JSONP
 -------------
 
-Traditionally JSONP was used to circumvent the 
-[same origin policy](http://en.wikipedia.org/wiki/Same-origin_policy) in 
+Traditionally JSONP was used to circumvent the
+[same origin policy](http://en.wikipedia.org/wiki/Same-origin_policy) in
 JavaScript. AJAX requests were limited in what sites they could make requests to
-but `<script>` tags did not have such restrictions imposed. 
+but `<script>` tags did not have such restrictions imposed.
 
-You can fake a cross orgin request by loading a script tag with a known 
-callback function. Many web services support JSONP by allowing for a 
+You can fake a cross orgin request by loading a script tag with a known
+callback function. Many web services support JSONP by allowing for a
 `callback=someFunction` parameter to be sent in the query string.
 
-Here is an example URL from Google Docs 
+Here is an example URL from Google Docs
 https://spreadsheets.google.com/feeds/list/o13394135408524254648.240766968415752635/od6/public/basic?alt=json-in-script&callback=someFunction
 
 Notice the `callback=someFunction` parameter. Go view that URL and you will
