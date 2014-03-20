@@ -16,8 +16,8 @@ my explorations.
 - [Editor](/editor)
 - [Fourier Transform](/series)
 - [Inflecta](/inflecta/docs)
-- [Interactive Documentation](/interactive/docs)
-- [Package Manager](/require/docs)
+- [Interactive Documentation](http://distri.github.io/interactive/docs)
+- [Package Manager](http://distri.github.io/require/docs)
 - [Pixel Editor](/pixel-editor)
 - [Streams](/stream/docs)
 
