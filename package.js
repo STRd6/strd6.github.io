@@ -1,5 +1,158 @@
 (function(pkg) {
-  // Expose a require for our package so scripts can access our modules
+  (function() {
+  var cacheFor, circularGuard, defaultEntryPoint, fileSeparator, generateRequireFn, global, isPackage, loadModule, loadPackage, loadPath, normalizePath, rootModule, startsWith,
+    __slice = [].slice;
+
+  fileSeparator = '/';
+
+  global = window;
+
+  defaultEntryPoint = "main";
+
+  circularGuard = {};
+
+  rootModule = {
+    path: ""
+  };
+
+  loadPath = function(parentModule, pkg, path) {
+    var cache, localPath, module, normalizedPath;
+    if (startsWith(path, '/')) {
+      localPath = [];
+    } else {
+      localPath = parentModule.path.split(fileSeparator);
+    }
+    normalizedPath = normalizePath(path, localPath);
+    cache = cacheFor(pkg);
+    if (module = cache[normalizedPath]) {
+      if (module === circularGuard) {
+        throw "Circular dependency detected when requiring " + normalizedPath;
+      }
+    } else {
+      cache[normalizedPath] = circularGuard;
+      try {
+        cache[normalizedPath] = module = loadModule(pkg, normalizedPath);
+      } finally {
+        if (cache[normalizedPath] === circularGuard) {
+          delete cache[normalizedPath];
+        }
+      }
+    }
+    return module.exports;
+  };
+
+  normalizePath = function(path, base) {
+    var piece, result;
+    if (base == null) {
+      base = [];
+    }
+    base = base.concat(path.split(fileSeparator));
+    result = [];
+    while (base.length) {
+      switch (piece = base.shift()) {
+        case "..":
+          result.pop();
+          break;
+        case "":
+        case ".":
+          break;
+        default:
+          result.push(piece);
+      }
+    }
+    return result.join(fileSeparator);
+  };
+
+  loadPackage = function(parentModule, pkg) {
+    var path;
+    path = pkg.entryPoint || defaultEntryPoint;
+    return loadPath(parentModule, pkg, path);
+  };
+
+  loadModule = function(pkg, path) {
+    var args, context, dirname, file, module, program, values;
+    if (!(file = pkg.distribution[path])) {
+      throw "Could not find file at " + path + " in " + pkg.name;
+    }
+    program = file.content;
+    dirname = path.split(fileSeparator).slice(0, -1).join(fileSeparator);
+    module = {
+      path: dirname,
+      exports: {}
+    };
+    context = {
+      require: generateRequireFn(pkg, module),
+      global: global,
+      module: module,
+      exports: module.exports,
+      PACKAGE: pkg,
+      __filename: path,
+      __dirname: dirname
+    };
+    args = Object.keys(context);
+    values = args.map(function(name) {
+      return context[name];
+    });
+    Function.apply(null, __slice.call(args).concat([program])).apply(module, values);
+    return module;
+  };
+
+  isPackage = function(path) {
+    if (!(startsWith(path, fileSeparator) || startsWith(path, "." + fileSeparator) || startsWith(path, ".." + fileSeparator))) {
+      return path.split(fileSeparator)[0];
+    } else {
+      return false;
+    }
+  };
+
+  generateRequireFn = function(pkg, module) {
+    if (module == null) {
+      module = rootModule;
+    }
+    if (pkg.name == null) {
+      pkg.name = "ROOT";
+    }
+    return function(path) {
+      var otherPackage;
+      if (isPackage(path)) {
+        if (!(otherPackage = pkg.dependencies[path])) {
+          throw "Package: " + path + " not found.";
+        }
+        if (otherPackage.name == null) {
+          otherPackage.name = path;
+        }
+        return loadPackage(rootModule, otherPackage);
+      } else {
+        return loadPath(module, pkg, path);
+      }
+    };
+  };
+
+  if (typeof exports !== "undefined" && exports !== null) {
+    exports.generateFor = generateRequireFn;
+  } else {
+    global.Require = {
+      generateFor: generateRequireFn
+    };
+  }
+
+  startsWith = function(string, prefix) {
+    return string.lastIndexOf(prefix, 0) === 0;
+  };
+
+  cacheFor = function(pkg) {
+    if (pkg.cache) {
+      return pkg.cache;
+    }
+    Object.defineProperty(pkg, "cache", {
+      value: {}
+    });
+    return pkg.cache;
+  };
+
+}).call(this);
+
+//# sourceURL=main.coffee
   window.require = Require.generateFor(pkg);
 })({
   "source": {
@@ -12,7 +165,7 @@
     "index.md": {
       "path": "index.md",
       "mode": "100644",
-      "content": "www.danielx.net\n===============\n\nHere I have many software experiments.\n\nThis whole site is created in my [editor](/editor/docs).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Editor](/editor)\n- [Fourier Transform](/series)\n- [Inflecta](/inflecta/docs)\n- [Interactive Documentation](/interactive/docs)\n- [Package Manager](/require/docs)\n- [Pixel Editor](/pixel-editor)\n- [Streams](/stream/docs)\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp)\n",
+      "content": "www.danielx.net\n===============\n\nHere I have many software experiments.\n\nThis whole site is created in my [editor](/editor/docs).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Editor](/editor)\n- [Fourier Transform](/series)\n- [Inflecta](/inflecta/docs)\n- [Interactive Documentation](http://distri.github.io/interactive/docs)\n- [Package Manager](http://distri.github.io/require/docs)\n- [Pixel Editor](/pixel-editor)\n- [Streams](/stream/docs)\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp)\n",
       "type": "blob"
     },
     "pixie.cson": {
@@ -40,7 +193,7 @@
     "owner": {
       "login": "STRd6",
       "id": 18894,
-      "avatar_url": "https://gravatar.com/avatar/33117162fff8a9cf50544a604f60c045?d=https%3A%2F%2Fidenticons.github.com%2F39df222bffe39629d904e4883eabc654.png&r=x",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18894?",
       "gravatar_id": "33117162fff8a9cf50544a604f60c045",
       "url": "https://api.github.com/users/STRd6",
       "html_url": "https://github.com/STRd6",
@@ -97,14 +250,14 @@
     "labels_url": "https://api.github.com/repos/STRd6/strd6.github.io/labels{/name}",
     "releases_url": "https://api.github.com/repos/STRd6/strd6.github.io/releases{/id}",
     "created_at": "2012-02-05T01:56:50Z",
-    "updated_at": "2014-02-20T01:57:14Z",
-    "pushed_at": "2014-02-20T01:57:14Z",
+    "updated_at": "2014-03-16T15:54:16Z",
+    "pushed_at": "2014-03-16T15:54:16Z",
     "git_url": "git://github.com/STRd6/strd6.github.io.git",
     "ssh_url": "git@github.com:STRd6/strd6.github.io.git",
     "clone_url": "https://github.com/STRd6/strd6.github.io.git",
     "svn_url": "https://github.com/STRd6/strd6.github.io",
     "homepage": "strd6.github.io",
-    "size": 324,
+    "size": 344,
     "stargazers_count": 1,
     "watchers_count": 1,
     "language": "CoffeeScript",
