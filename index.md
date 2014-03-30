@@ -25,3 +25,6 @@ Articles
 --------
 
 [Using JSONP with Github Pages](./gh-pages-jsonp)
+
+>     #! setup
+>     require "/lib/disqus"
