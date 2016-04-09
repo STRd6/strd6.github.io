@@ -24,4 +24,4 @@ my explorations.
 Articles
 --------
 
-[Using JSONP with Github Pages](./gh-pages-jsonp/)
+[Using JSONP with Github Pages](./gh-pages-jsonp)
