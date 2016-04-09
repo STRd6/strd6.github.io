@@ -1,11 +1,11 @@
 (function(pkg) {
   (function() {
-  var annotateSourceURL, cacheFor, circularGuard, defaultEntryPoint, fileSeparator, generateRequireFn, global, isPackage, loadModule, loadPackage, loadPath, normalizePath, rootModule, startsWith,
+  var annotateSourceURL, cacheFor, circularGuard, defaultEntryPoint, fileSeparator, generateRequireFn, global, isPackage, loadModule, loadPackage, loadPath, normalizePath, publicAPI, rootModule, startsWith,
     __slice = [].slice;
 
   fileSeparator = '/';
 
-  global = window;
+  global = self;
 
   defaultEntryPoint = "main";
 
@@ -70,11 +70,14 @@
   };
 
   loadModule = function(pkg, path) {
-    var args, context, dirname, file, module, program, values;
+    var args, content, context, dirname, file, module, program, values;
     if (!(file = pkg.distribution[path])) {
       throw "Could not find file at " + path + " in " + pkg.name;
     }
-    program = annotateSourceURL(file.content, pkg, path);
+    if ((content = file.content) == null) {
+      throw "Malformed package. No content for file at " + path + " in " + pkg.name;
+    }
+    program = annotateSourceURL(content, pkg, path);
     dirname = path.split(fileSeparator).slice(0, -1).join(fileSeparator);
     module = {
       path: dirname,
@@ -106,6 +109,7 @@
   };
 
   generateRequireFn = function(pkg, module) {
+    var fn;
     if (module == null) {
       module = rootModule;
     }
@@ -115,9 +119,11 @@
     if (pkg.scopedName == null) {
       pkg.scopedName = "ROOT";
     }
-    return function(path) {
+    fn = function(path) {
       var otherPackage;
-      if (isPackage(path)) {
+      if (typeof path === "object") {
+        return loadPackage(path);
+      } else if (isPackage(path)) {
         if (!(otherPackage = pkg.dependencies[path])) {
           throw "Package: " + path + " not found.";
         }
@@ -132,14 +138,26 @@
         return loadPath(module, pkg, path);
       }
     };
+    fn.packageWrapper = publicAPI.packageWrapper;
+    fn.executePackageWrapper = publicAPI.executePackageWrapper;
+    return fn;
+  };
+
+  publicAPI = {
+    generateFor: generateRequireFn,
+    packageWrapper: function(pkg, code) {
+      return ";(function(PACKAGE) {\n  var src = " + (JSON.stringify(PACKAGE.distribution.main.content)) + ";\n  var Require = new Function(\"PACKAGE\", \"return \" + src)({distribution: {main: {content: src}}});\n  var require = Require.generateFor(PACKAGE);\n  " + code + ";\n})(" + (JSON.stringify(pkg, null, 2)) + ");";
+    },
+    executePackageWrapper: function(pkg) {
+      return publicAPI.packageWrapper(pkg, "require('./" + pkg.entryPoint + "')");
+    },
+    loadPackage: loadPackage
   };
 
   if (typeof exports !== "undefined" && exports !== null) {
-    exports.generateFor = generateRequireFn;
+    module.exports = publicAPI;
   } else {
-    global.Require = {
-      generateFor: generateRequireFn
-    };
+    global.Require = publicAPI;
   }
 
   startsWith = function(string, prefix) {
@@ -160,9 +178,10 @@
     return "" + program + "\n//# sourceURL=" + pkg.scopedName + "/" + path;
   };
 
+  return publicAPI;
+
 }).call(this);
 
-//# sourceURL=main.coffee
   window.require = Require.generateFor(pkg);
 })({
   "source": {
@@ -174,7 +193,7 @@
     },
     "index.md": {
       "path": "index.md",
-      "content": "www.danielx.net\n===============\n\nHere I have many software experiments.\n\nThis whole site is created in my [editor](/editor/docs/).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Editor](/editor/)\n- [Fourier Transform](/series/)\n- [Inflecta](/inflecta/docs/)\n- [Interactive Documentation](http://distri.github.io/interactive/docs/)\n- [Package Manager](http://distri.github.io/require/docs/)\n- [Pixel Editor](/pixel-editor/)\n- [Streams](/stream/docs/)\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp/)\n",
+      "content": "danielx.net\n===========\n\nHere I have many software experiments.\n\nThis whole site is created in my [editor](/editor/docs/).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Editor](/editor/)\n- [Fourier Transform](/series/)\n- [Inflecta](/inflecta/docs/)\n- [Interactive Documentation](https://distri.github.io/interactive/docs/)\n- [Package Manager](https://distri.github.io/require/docs/)\n- [Pixel Editor](/pixel-editor/)\n- [Streams](/stream/docs/)\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp/)\n",
       "mode": "100644",
       "type": "blob"
     },
@@ -183,6 +202,11 @@
       "content": "publishBranch: \"master\"\n",
       "mode": "100644",
       "type": "blob"
+    },
+    "ideas.md": {
+      "path": "ideas.md",
+      "content": "Ideas\n=====\n\nMusic Box where points of sound move around a multi-dimensional space via\ndifferential equations.\n",
+      "mode": "100644"
     }
   },
   "distribution": {
@@ -193,7 +217,7 @@
     }
   },
   "progenitor": {
-    "url": "http://www.danielx.net/editor/"
+    "url": "https://danielx.net/editor/"
   },
   "entryPoint": "main",
   "repository": {
