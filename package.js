@@ -193,7 +193,7 @@
     },
     "index.md": {
       "path": "index.md",
-      "content": "danielx.net\n===========\n\nHere I have many software experiments.\n\nThis whole site is created in my [editor](/editor/docs/).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Editor](/editor/)\n- [Fourier Transform](/series/)\n- [Inflecta](/inflecta/docs/)\n- [Interactive Documentation](https://distri.github.io/interactive/docs/)\n- [Package Manager](https://distri.github.io/require/docs/)\n- [Pixel Editor](/pixel-editor/)\n- [Streams](/stream/docs/)\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp/)\n",
+      "content": "danielx.net\n===========\n\nHere I have many software experiments.\n\nThis whole site is created in my [editor](/editor/docs/).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Editor](/editor/)\n- [Fourier Transform](/series/)\n- [Inflecta](/inflecta/docs/)\n- [Interactive Documentation](https://distri.github.io/interactive/docs/)\n- [Package Manager](https://distri.github.io/require/docs/)\n- [Pixel Editor](/pixel-editor/)\n- [Streams](/stream/docs/)\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp)\n",
       "mode": "100644",
       "type": "blob"
     },
