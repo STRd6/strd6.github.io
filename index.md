@@ -19,6 +19,8 @@ my explorations.
 - [Interactive Documentation](https://distri.github.io/interactive/docs/)
 - [Package Manager](https://distri.github.io/require/docs/)
 - [Pixel Editor](/pixel-editor/)
+- [Paint Composer](/composer/)
+- [Chlorian MIDI Player](/chlorian/)
 - [Streams](/stream/docs/)
 
 Articles
