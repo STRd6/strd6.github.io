@@ -193,7 +193,7 @@
     },
     "ideas.md": {
       "path": "ideas.md",
-      "content": "Ideas\n=====\n\nMusic Box where points of sound move around a multi-dimensional space via\ndifferential equations.\n",
+      "content": "Ideas\n=====\n\nMusic Box where points of sound move around a multi-dimensional space via\ndifferential equations.\n\nL-Systems for Music\n\nDark Souls for Websites (Leave messages for other undeads, like traps or tricks)!\n",
       "mode": "100644",
       "type": "blob"
     },
@@ -218,7 +218,7 @@
     }
   },
   "progenitor": {
-    "url": "https://danielx.net/editor/?code=9e019cdc94e42c7123ae"
+    "url": "https://danielx.net/editor/"
   },
   "entryPoint": "main",
   "repository": {
