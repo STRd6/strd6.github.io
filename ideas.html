@@ -32,6 +32,10 @@
 differential equations.</p>
 <p>L-Systems for Music</p>
 <p>Dark Souls for Websites (Leave messages for other undeads, like traps or tricks)!</p>
+<p>Add a pre-publish hook in that can run to modify the files before publishing 
+them. The hook will live in the project and be called in a safe web-worker or
+equivalent. It will run a <code>_prepublish</code> entry point and be passed the built 
+package, returning a Promise for the modified package to publish.</p>
 
   </div>
   <div class="content"><pre><code>

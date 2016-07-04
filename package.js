@@ -193,7 +193,7 @@
     },
     "ideas.md": {
       "path": "ideas.md",
-      "content": "Ideas\n=====\n\nMusic Box where points of sound move around a multi-dimensional space via\ndifferential equations.\n\nL-Systems for Music\n\nDark Souls for Websites (Leave messages for other undeads, like traps or tricks)!\n",
+      "content": "Ideas\n=====\n\nMusic Box where points of sound move around a multi-dimensional space via\ndifferential equations.\n\nL-Systems for Music\n\nDark Souls for Websites (Leave messages for other undeads, like traps or tricks)!\n\nAdd a pre-publish hook in that can run to modify the files before publishing \nthem. The hook will live in the project and be called in a safe web-worker or\nequivalent. It will run a `_prepublish` entry point and be passed the built \npackage, returning a Promise for the modified package to publish.\n",
       "mode": "100644",
       "type": "blob"
     },
@@ -225,7 +225,7 @@
     "branch": "blog",
     "default_branch": "blog",
     "full_name": "STRd6/strd6.github.io",
-    "homepage": "strd6.github.io",
+    "homepage": "https://danielx.net",
     "description": "Github pages",
     "html_url": "https://github.com/STRd6/strd6.github.io",
     "url": "https://api.github.com/repos/STRd6/strd6.github.io",
