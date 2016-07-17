@@ -193,19 +193,19 @@
     },
     "ideas.md": {
       "path": "ideas.md",
-      "content": "Ideas\n=====\n\nMusic Box where points of sound move around a multi-dimensional space via\ndifferential equations.\n\nL-Systems for Music\n\nDark Souls for Websites (Leave messages for other undeads, like traps or tricks)!\n\nAdd a pre-publish hook in that can run to modify the files before publishing \nthem. The hook will live in the project and be called in a safe web-worker or\nequivalent. It will run a `_prepublish` entry point and be passed the built \npackage, returning a Promise for the modified package to publish.\n",
+      "content": "Ideas\n=====\n\nMusic Box where points of sound move around a multi-dimensional space via\ndifferential equations.\n\nL-Systems for Music\n\nDark Souls for Websites (Leave messages for other undeads, like traps or tricks)!\n\nAdd a pre-publish hook in that can run to modify the files before publishing\nthem. The hook will live in the project and be called in a safe web-worker or\nequivalent. It will run a `_prepublish` entry point and be passed the built\npackage, returning a Promise for the modified package to publish.\n",
       "mode": "100644",
       "type": "blob"
     },
     "index.md": {
       "path": "index.md",
-      "content": "danielx.net\n===========\n\nHere I have many software experiments.\n\nThis whole site is created in my [editor](/editor/docs/).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Editor](/editor/)\n- [Fourier Transform](/series/)\n- [Inflecta](/inflecta/docs/)\n- [Interactive Documentation](https://distri.github.io/interactive/docs/)\n- [Package Manager](https://distri.github.io/require/docs/)\n- [Pixel Editor](/pixel-editor/)\n- [Paint Composer](/composer/)\n- [Chlorian MIDI Player](/chlorian/)\n- [Streams](/stream/docs/)\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp)\n",
+      "content": "danielx.net\n===========\n\nHere I have many software experiments.\n\nCreative Tools\n--------------\n\nHere are some neat audio/visual creative tools I've made.\n\n- [Editor](/editor/)\n- [Pixel Editor](/pixel-editor/)\n- [Paint Composer](/composer/)\n- [Sound Recorder](/sound-recorder/)\n- [Chlorian MIDI Player](/chlorian/)\n\nGames\n-----\n\nThese are some kind of ok games.\n\n- [Prototype Dwarf Fortress Clone](/honegar/)\n- [Dungeon of Sadness \\[LEGENDS\\]](/ld33/)\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Fourier Transform](/series/)\n- [Inflecta](/inflecta/docs/)\n- [Interactive Documentation](https://distri.github.io/interactive/docs/)\n- [Package Manager](https://distri.github.io/require/docs/)\n- [Streams](/stream/docs/)\n\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp)\n\nAbout\n-----\n\nThis whole site is created in my [editor](/editor/docs/).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n",
       "mode": "100644",
       "type": "blob"
     },
     "pixie.cson": {
       "path": "pixie.cson",
-      "content": "publishBranch: \"master\"\n",
+      "content": "title: \"Daniel X Moore Presents - danielx.net\"\ndescription: \"\"\"\n  Pixel editors, Mario Paint Composer, GAMES! Fun! Amazement and amusement!\n  Behold the wonders of danielx.net. Free web based tools that will tickle your \n  creative side!\n\"\"\"\npublishBranch: \"master\"\n",
       "mode": "100644",
       "type": "blob"
     }
@@ -213,7 +213,7 @@
   "distribution": {
     "pixie": {
       "path": "pixie",
-      "content": "module.exports = {\"publishBranch\":\"master\"};",
+      "content": "module.exports = {\"title\":\"Daniel X Moore Presents - danielx.net\",\"description\":\"Pixel editors, Mario Paint Composer, GAMES! Fun! Amazement and amusement!\\nBehold the wonders of danielx.net. Free web based tools that will tickle your \\ncreative side!\",\"publishBranch\":\"master\"};",
       "type": "blob"
     }
   },
