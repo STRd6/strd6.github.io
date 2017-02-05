@@ -8,11 +8,13 @@ Creative Tools
 
 Here are some neat audio/visual creative tools I've made.
 
+- [Whimsy.Space](https://whimsy.space)
 - [Editor](/editor/)
 - [Pixel Editor](/pixel-editor/)
 - [Paint Composer](/composer/)
 - [Sound Recorder](/sound-recorder/)
 - [Chlorian MIDI Player](/chlorian/)
+- [Chateau Avatar Chat](/chateau/)
 
 Games
 -----
