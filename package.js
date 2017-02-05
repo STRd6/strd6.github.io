@@ -199,7 +199,7 @@
     },
     "index.md": {
       "path": "index.md",
-      "content": "danielx.net\n===========\n\nHere I have many software experiments.\n\nCreative Tools\n--------------\n\nHere are some neat audio/visual creative tools I've made.\n\n- [Editor](/editor/)\n- [Pixel Editor](/pixel-editor/)\n- [Paint Composer](/composer/)\n- [Sound Recorder](/sound-recorder/)\n- [Chlorian MIDI Player](/chlorian/)\n\nGames\n-----\n\nThese are some kind of ok games.\n\n- [Prototype Dwarf Fortress Clone](/honegar/)\n- [Dungeon of Sadness \\[LEGENDS\\]](/ld33/)\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Fourier Transform](/series/)\n- [Inflecta](/inflecta/docs/)\n- [Interactive Documentation](https://distri.github.io/interactive/docs/)\n- [Package Manager](https://distri.github.io/require/docs/)\n- [Streams](/stream/docs/)\n\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp)\n\nAbout\n-----\n\nThis whole site is created in my [editor](/editor/docs/).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n",
+      "content": "danielx.net\n===========\n\nHere I have many software experiments.\n\nCreative Tools\n--------------\n\nHere are some neat audio/visual creative tools I've made.\n\n- [Whimsy.Space](https://whimsy.space)\n- [Editor](/editor/)\n- [Pixel Editor](/pixel-editor/)\n- [Paint Composer](/composer/)\n- [Sound Recorder](/sound-recorder/)\n- [Chlorian MIDI Player](/chlorian/)\n- [Chateau Avatar Chat](/chateau/)\n\nGames\n-----\n\nThese are some kind of ok games.\n\n- [Prototype Dwarf Fortress Clone](/honegar/)\n- [Dungeon of Sadness \\[LEGENDS\\]](/ld33/)\n\nExplorations\n------------\n\nThe internet and computer software is a big place to explore. These are some of\nmy explorations.\n\n- [Fourier Transform](/series/)\n- [Inflecta](/inflecta/docs/)\n- [Interactive Documentation](https://distri.github.io/interactive/docs/)\n- [Package Manager](https://distri.github.io/require/docs/)\n- [Streams](/stream/docs/)\n\n\nArticles\n--------\n\n[Using JSONP with Github Pages](./gh-pages-jsonp)\n\nAbout\n-----\n\nThis whole site is created in my [editor](/editor/docs/).\n\nThe source for this directory is here: https://github.com/STRd6/strd6.github.io\n",
       "mode": "100644",
       "type": "blob"
     },
@@ -219,6 +219,11 @@
   },
   "progenitor": {
     "url": "https://danielx.net/editor/"
+  },
+  "config": {
+    "title": "Daniel X Moore Presents - danielx.net",
+    "description": "Pixel editors, Mario Paint Composer, GAMES! Fun! Amazement and amusement!\nBehold the wonders of danielx.net. Free web based tools that will tickle your \ncreative side!",
+    "publishBranch": "master"
   },
   "entryPoint": "main",
   "repository": {
