@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>index</title>
+  <title>rails-mailgun</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="https://strd6.github.io/cdn/parallel/docco.css" />
@@ -16,7 +16,7 @@
     <div class="pilwrap">
       <a class="pilcrow" href="#section-1">&#182;</a>
     </div>
-    <h1 id="danielx-net">danielx.net</h1>
+    <h1 id="rails-email-deliverability-tips-n-tricks-with-mailgun">Rails Email Deliverability Tips &#39;n&#39; Tricks with Mailgun</h1>
 
   </div>
   <div class="content"><pre><code>
@@ -28,8 +28,9 @@
     <div class="pilwrap">
       <a class="pilcrow" href="#section-2">&#182;</a>
     </div>
-    <p>Here I have many software experiments.</p>
-<h2 id="creative-tools">Creative Tools</h2>
+    <p>Even if you&#39;re hella legit about sourcing your email list, sometimes addresses expire, people close accounts, or some other tragedy befalls otherwise healthy emails.</p>
+<p>To make sure that you reputation doesn&#39;t suffer you can use these simple tips and tricks!</p>
+<h2 id="skip-sending-to-bad-addresses">Skip sending to bad addresses</h2>
 
   </div>
   <div class="content"><pre><code>
@@ -41,21 +42,17 @@
     <div class="pilwrap">
       <a class="pilcrow" href="#section-3">&#182;</a>
     </div>
-    <p>Here are some neat audio/visual creative tools I&#39;ve made.</p>
-<ul>
-<li><a href="https://whimsy.space">Whimsy.Space</a></li>
-<li><a href="/editor/">Editor</a></li>
-<li><a href="/pixel-editor/">Pixel Editor</a></li>
-<li><a href="/composer/">Paint Composer</a></li>
-<li><a href="/sound-recorder/">Sound Recorder</a></li>
-<li><a href="/chlorian/">Chlorian MIDI Player</a></li>
-<li><a href="/chateau/">Chateau Avatar Chat</a></li>
-</ul>
-<h2 id="games">Games</h2>
+    <p>Add an after_action to <code>ActionMailer::Base</code> that will not perform deliveries to emails that are undeliverable.</p>
 
   </div>
-  <div class="content"><pre><code>
-</code></pre>
+  <div class="content"><pre><code>class ApplicationMailer &lt; ActionMailer::Base
+  after_action :check_email
+
+  def check_email
+    recipient = mail.to[0]
+    mail.perform_deliveries = !Email.where(undeliverable: true).find_by_email(recipient)
+  end
+end</code></pre>
 </div>
 </li>
 <li id="section-4">
@@ -63,12 +60,8 @@
     <div class="pilwrap">
       <a class="pilcrow" href="#section-4">&#182;</a>
     </div>
-    <p>These are some kind of ok games.</p>
-<ul>
-<li><a href="/honegar/">Prototype Dwarf Fortress Clone</a></li>
-<li><a href="/ld33/">Dungeon of Sadness [LEGENDS]</a></li>
-</ul>
-<h2 id="explorations">Explorations</h2>
+    <p>In this example we have an <code>Email</code> model with <code>email</code> and <code>undeliverable</code> columns. We simply check that the recipient is deliverable after we&#39;ve populated the mail object&#39;s data, but before we actually send the email. We can manually update this table as we get information about undeliverable addresses and bounces from Mailgun.</p>
+<h2 id="update-bad-addresses">Update bad Addresses</h2>
 
   </div>
   <div class="content"><pre><code>
@@ -80,20 +73,10 @@
     <div class="pilwrap">
       <a class="pilcrow" href="#section-5">&#182;</a>
     </div>
-    <p>The internet and computer software is a big place to explore. These are some of
-my explorations.</p>
-<ul>
-<li><a href="/series/">Fourier Transform</a></li>
-<li><a href="/inflecta/docs/">Inflecta</a></li>
-<li><a href="https://distri.github.io/interactive/docs/">Interactive Documentation</a></li>
-<li><a href="https://distri.github.io/require/docs/">Package Manager</a></li>
-<li><a href="/stream/docs/">Streams</a></li>
-</ul>
-<h2 id="articles">Articles</h2>
+    <p>A great place to get your list of bounced addresses is straight from the <a href="https://documentation.mailgun.com/api-suppressions.html#bounces">Mailgun API</a></p>
 
   </div>
-  <div class="content"><pre><code>
-</code></pre>
+  <div class="content"><pre><code>curl -s --user &#39;api:key-yourapikey&#39; -G   https://api.mailgun.net/v3/your.domain/bounces?limit=10000 &gt; bounces.json</code></pre>
 </div>
 </li>
 <li id="section-6">
@@ -101,11 +84,9 @@ my explorations.</p>
     <div class="pilwrap">
       <a class="pilcrow" href="#section-6">&#182;</a>
     </div>
-    <ul>
-<li><a href="./rails-mailgun">Rails Email Deliverability Tips &#39;n&#39; Tricks with Mailgun</a></li>
-<li><a href="./gh-pages-jsonp">Using JSONP with Github Pages</a></li>
-</ul>
-<h2 id="about">About</h2>
+    <p>Be sure to put in your actual api key and domain. I&#39;ve set the limit here to 10k which is the maximum. If you have more than that you&#39;ll need to page through.</p>
+<p>Once you have this list you can update your <code>emails</code> table with the info.</p>
+<h2 id="track-bounces-as-the-occur-via-webhooks">Track Bounces as the Occur via Webhooks</h2>
 
   </div>
   <div class="content"><pre><code>
@@ -117,8 +98,58 @@ my explorations.</p>
     <div class="pilwrap">
       <a class="pilcrow" href="#section-7">&#182;</a>
     </div>
-    <p>This whole site is created in my <a href="/editor/docs/">editor</a>.</p>
-<p>The source for this directory is here: <a href="https://github.com/STRd6/strd6.github.io">https://github.com/STRd6/strd6.github.io</a></p>
+    <p>Updating your table with any bounced addresses in bulk is a great way to prune out bad addresses and keep your reputation intact. Even better is update the table as they occur. Thankfully Mailgun provides a webhook to <a href="https://documentation.mailgun.com/user_manual.html#tracking-bounces">track bounces</a>.</p>
+<p>We can create a controller to receive the event, being sure to check that the signature matches.</p>
+
+  </div>
+  <div class="content"><pre><code>class MailgunController &lt; ApplicationController
+  skip_before_action :verify_authenticity_token
+
+  before_action :verify_mailgun_signature
+
+  def bounced
+    Email.mark_undeliverable(params[:recipient])
+  end
+
+  private
+
+  def verify_mailgun_signature
+    api_key = ENV[&quot;MAILGUN_API_KEY&quot;]
+    token = params[:token]
+    timestamp = params[:timestamp]
+    signature = params[:signature]
+
+    digest = OpenSSL::Digest::SHA256.new
+    data = [timestamp, token].join
+
+    valid_signature = signature == OpenSSL::HMAC.hexdigest(digest, api_key, data)
+
+    unless valid_signature
+      render nothing: true, status: :unauthorized
+    end
+  end
+end</code></pre>
+</div>
+</li>
+<li id="section-8">
+  <div class="annotation">
+    <div class="pilwrap">
+      <a class="pilcrow" href="#section-8">&#182;</a>
+    </div>
+    <p>When we receive the webhook we verify the signature, return 406 unuathorized if it doesn&#39;t match. If it does match then we can be sure that the request came from Mailgun so we can mark the address as undeliverable.</p>
+<h2 id="conclusion">Conclusion</h2>
+
+  </div>
+  <div class="content"><pre><code>
+</code></pre>
+</div>
+</li>
+<li id="section-9">
+  <div class="annotation">
+    <div class="pilwrap">
+      <a class="pilcrow" href="#section-9">&#182;</a>
+    </div>
+    <p>Hopefully this saves you some time when keeping your mailing list clean, peace!</p>
 
   </div>
   <div class="content"><pre><code>
