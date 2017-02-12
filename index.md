@@ -40,7 +40,8 @@ my explorations.
 Articles
 --------
 
-[Using JSONP with Github Pages](./gh-pages-jsonp)
+- [Rails Email Deliverability Tips 'n' Tricks with Mailgun](./rails-mailgun)
+- [Using JSONP with Github Pages](./gh-pages-jsonp)
 
 About
 -----
